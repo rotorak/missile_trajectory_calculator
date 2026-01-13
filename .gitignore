@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+node_modules/
+.DS_Store
+FORTRAN_TO_PYTHON_CONVERSION.md

@@ -1,0 +1,6 @@
+[project]
+name = "missile-trajectory-simulation"
+version = "0.1.0"
+description = "Ballistic missile trajectory simulation"
+requires-python = ">=3.12"
+dependencies = []
