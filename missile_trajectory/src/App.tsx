@@ -4,7 +4,7 @@ import Introduction from './sections/Introduction'
 import Architecture from './sections/Architecture'
 import Equations from './sections/Equations'
 import Simulation from './sections/Simulation'
-import { useStorageState, ParameterControls } from './ParameterControls';
+import { useStorageState} from './ParameterControls';
 import { useTrajectoryHistory } from './TrajectoryHistory';
 import { type TrajectoryPoint } from './types'
 import "./styles/sidebar.css"
