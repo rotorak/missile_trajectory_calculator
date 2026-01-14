@@ -10,6 +10,7 @@ WORKDIR /app
 # 3. Copy package files and install Node dependencies
 COPY package*.json ./
 RUN npm install
+RUN npm install -g typescript ts-node
 
 # 4. Copy the rest of the backend code
 COPY . .
@@ -20,4 +21,4 @@ ENV PORT=8080
 
 # 6. Start the server
 # Using ts-node for simplicity.
-CMD ["npx", "ts-node", "src/server.ts"]
+CMD ["ts-node", "src/server.ts"]
