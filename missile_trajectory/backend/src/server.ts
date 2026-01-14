@@ -29,7 +29,10 @@ process.on('unhandledRejection', (reason: any, promise: Promise<any>) => {
 const app = express();
 console.log("Server starting...");
 
-const PORT = parseInt(process.env.PORT || "3000", 10);
+// Force port 8080 for Cloud Run
+const PORT = 8080;
+console.log('[PORT] Using port:', PORT);
+
 console.log('[PORT] process.env.PORT:', process.env.PORT);
 console.log('[PORT] Parsed PORT value:', PORT);
 console.log('[PORT] All env vars with PORT:', Object.keys(process.env).filter(k => k.includes('PORT')));
