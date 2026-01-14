@@ -14,30 +14,45 @@ RUN npm ci --only=production=false
 # 4. Copy the rest of the backend code
 COPY . .
 
-# Add after COPY . .
-ARG BUILD_ID
-ENV BUILD_ID=$BUILD_ID
-RUN echo "Build ID: $BUILD_ID"
+# 5. VERIFY SOURCE CODE - Print what's actually in the source files
+RUN echo "=== VERIFYING SOURCE CODE ===" && \
+    echo "--- Checking src/server.ts PORT value ---" && \
+    grep -A 2 "const PORT" src/server.ts && \
+    echo "--- File timestamp ---" && \
+    ls -la src/server.ts && \
+    echo "--- First 50 lines of server.ts ---" && \
+    head -50 src/server.ts | tail -20 && \
+    echo "=== SOURCE VERIFICATION COMPLETE ==="
 
-# 5. Remove any existing dist folder and build TypeScript code
+# 6. Remove any existing dist folder and build TypeScript code
 RUN rm -rf dist/ && npm run build
 
-# 6. Verify build output exists and show structure
+# 7. VERIFY COMPILED CODE - Print what's actually in the compiled output
+RUN echo "=== VERIFYING COMPILED CODE ===" && \
+    echo "--- Checking dist/server.js PORT value ---" && \
+    grep -A 2 "const PORT" dist/server.js && \
+    echo "--- File size and timestamp ---" && \
+    ls -lh dist/server.js && \
+    echo "--- First 50 lines of compiled server.js ---" && \
+    head -50 dist/server.js | tail -20 && \
+    echo "=== COMPILED CODE VERIFICATION COMPLETE ==="
+
+# 8. Verify build output exists and show structure
 RUN ls -la dist/ || (echo "Build failed: dist directory not found" && exit 1)
 RUN test -f dist/server.js || (echo "Build failed: dist/server.js not found" && exit 1)
 RUN test -f dist/simulation-controller.js || (echo "Build failed: dist/simulation-controller.js not found" && exit 1)
 
-# 7. Verify the compiled code has PORT = 8080
-RUN grep -q "const PORT = 8080" dist/server.js || (echo "ERROR: Compiled code does not have PORT = 8080!" && cat dist/server.js | grep "const PORT" && exit 1)
+# 9. Final verification - This will fail the build if PORT is not 8080
+RUN grep -q "const PORT = 8080" dist/server.js || (echo "ERROR: Compiled code does not have PORT = 8080!" && echo "Actual PORT value found:" && grep "const PORT" dist/server.js && exit 1)
 
-# 8. Verify missile.py exists
+# 10. Verify missile.py exists
 RUN test -f missile.py || (echo "missile.py not found" && exit 1)
 
-# 9. Cloud Run will inject PORT=8080 automatically, no need to set it here
+# 11. Cloud Run will inject PORT=8080 automatically, no need to set it here
 ENV NODE_ENV=production
 
-# 10. Expose the port (informational, Cloud Run uses PORT env var)
+# 12. Expose the port (informational, Cloud Run uses PORT env var)
 EXPOSE 8080
 
-# 11. Start the server with better error visibility
+# 13. Start the server with better error visibility
 CMD ["node", "--trace-warnings", "--trace-uncaught", "start.js"]
