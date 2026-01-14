@@ -16,9 +16,9 @@
     "tsx": "^4.21.0",
     "typescript": "^5.9.3"
   },
-  "scripts": {
-    "dev": "nodemon --signal SIGUSR2 --exec tsx src/server.ts",
-    "build": "tsc",
-    "start": "node dist/server.js"
-  }
+"scripts": {
+  "dev": "nodemon --signal SIGUSR2 --exec tsx src/server.ts",
+  "build": "tsc",
+  "start": "node start.js"
+}
 }

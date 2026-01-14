@@ -3,7 +3,6 @@ import { initiateSimulation, getEventName, trajectoryEmitter, validateSimulation
 import { spawnSync } from "child_process";
 
 import cors from "cors";
-const app = express();
 console.log("Server starting...");
 
 type TrajectoryData = {
@@ -16,6 +15,19 @@ type TrajectoryData = {
   time: number,
 }
 
+// Add error handler for unhandled errors
+process.on('uncaughtException', (error: Error) => {
+  console.error('Uncaught Exception:', error);
+  process.exit(1);
+});
+
+process.on('unhandledRejection', (reason: any, promise: Promise<any>) => {
+  console.error('Unhandled Rejection at:', promise, 'reason:', reason);
+  process.exit(1);
+});
+
+const app = express();
+console.log("Server starting...");
 
 const PORT = parseInt(process.env.PORT || "3000", 10);
 const cors_options = {
@@ -121,6 +133,9 @@ app.listen(PORT, "0.0.0.0", () => {
   try {
     const pythonCheck = spawnSync('python3', ['--version']);
     console.log(`Python3 available: ${pythonCheck.status === 0}`);
+    if (pythonCheck.status !== 0) {
+      console.error('Python3 check failed:', pythonCheck.stderr?.toString());
+    }
   } catch (error) {
     console.error("Error checking Python3:", error);
   }
