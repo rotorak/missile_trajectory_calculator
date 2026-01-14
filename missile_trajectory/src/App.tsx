@@ -15,7 +15,7 @@ function App() {
   const cesiumRef = useRef<HTMLDivElement | null>(null);
   const eventSourceRef = useRef<EventSource | null>(null);
   const simulationIdRef = useRef<string | null>(null);
-  const [parameterData, setParameterData] = useStorageState('parameterData', { longitude: 0, latitude: 0, beta: 0, delta: 0, altitude: 73152, velocity: 5, time: 0 });
+  const [parameterData, setParameterData] = useStorageState('parameterData', { longitude: 0, latitude: 0, beta: 0, delta: 0, altitude: 73000, velocity: 5, time: 0 });
   const { trajectoryHistory, addTrajectoryData, clearTrajectoryHistory } = useTrajectoryHistory();
   const [simulationState, setSimulationState] = useState('pending');
 
