@@ -52,7 +52,8 @@ function App() {
         eventSourceRef.current.close();
         eventSourceRef.current = null;
       }
-      const initiationResponse = await fetch('/api/trajectory/start', {
+      const API_URL = import.meta.env.VITE_API_URL || '';
+      const initiationResponse = await fetch(`${API_URL}/api/trajectory/start`, {
         method: 'POST',
         credentials: 'include',
         headers: {

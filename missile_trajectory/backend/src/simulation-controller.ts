@@ -48,7 +48,7 @@ export const spawnSimulation = (simulationId: string) => {
     ];
 
 
-    let process_spawn = spawn('python3', args, { cwd: '../../' });
+    let process_spawn = spawn('python3', args);
     currentSimulation.process = process_spawn;
     currentSimulation.status = "ongoing";
     activeSimulations.set(simulationId, currentSimulation);
