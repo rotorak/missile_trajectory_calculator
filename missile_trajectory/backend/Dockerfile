@@ -25,8 +25,7 @@ RUN test -f dist/simulation-controller.js || (echo "Build failed: dist/simulatio
 # 7. Verify missile.py exists
 RUN test -f missile.py || (echo "missile.py not found" && exit 1)
 
-# 8. Cloud Run injects the PORT environment variable, usually 8080.
-ENV PORT=8080
+# 8. Cloud Run will inject PORT=8080 automatically, no need to set it here
 ENV NODE_ENV=production
 
 # 9. Expose the port (informational, Cloud Run uses PORT env var)

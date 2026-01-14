@@ -30,6 +30,9 @@ const app = express();
 console.log("Server starting...");
 
 const PORT = parseInt(process.env.PORT || "3000", 10);
+console.log('[PORT] process.env.PORT:', process.env.PORT);
+console.log('[PORT] Parsed PORT value:', PORT);
+console.log('[PORT] All env vars with PORT:', Object.keys(process.env).filter(k => k.includes('PORT')));
 const cors_options = {
   origin: process.env.FRONTEND_URL || "http://localhost:5173",
   credentials: true,
