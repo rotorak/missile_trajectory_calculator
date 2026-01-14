@@ -25,6 +25,7 @@ function App() {
     { path: '/architecture', label: 'Architecture', id: 'architecture' },
     { path: '/equations', label: 'Key Equations', id: 'equations' },
     { path: '/simulation', label: 'Interactive Simulation', id: 'simulation' },
+    { path: 'https://github.com/rotorak/missile_trajectory_calculator', label: 'Github', id: 'github' },
   ];
 
   //  useEffect clean up on unmount
