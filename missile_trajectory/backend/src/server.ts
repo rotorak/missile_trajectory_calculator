@@ -1,7 +1,8 @@
 import express, { type Request, type Response } from "express";
 import { initiateSimulation, getEventName, trajectoryEmitter, validateSimulation, spawnSimulation, validatePayload } from "./simulation-controller.js"
-const app = express();
 import cors from "cors";
+const app = express();
+
 
 type TrajectoryData = {
   latitude: number,
