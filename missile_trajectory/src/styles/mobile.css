@@ -1,0 +1,35 @@
+/* Mobile-specific styles for parameter controls */
+@media (max-width: 768px) and (orientation: portrait) {
+    /* Shrink text in parameter controls panel */
+    .parameter-controls-mobile label {
+      font-size: 0.7rem;
+      line-height: 1.2;
+    }
+    
+    .parameter-controls-mobile input[type="number"],
+    .parameter-controls-mobile input[type="range"] {
+      font-size: 0.7rem;
+      padding: 0.25rem;
+    }
+    
+    .parameter-controls-mobile button {
+      font-size: 0.7rem;
+      padding: 0.375rem 0.75rem;
+    }
+    
+    /* Ensure controls fit in 50% width */
+    .parameter-controls-mobile > div {
+      margin-bottom: 0.5rem;
+    }
+    
+    .parameter-controls-mobile > div > label {
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+    
+    /* Make inputs smaller */
+    .parameter-controls-mobile input {
+      width: 100%;
+      max-width: 100%;
+    }
+  }

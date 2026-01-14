@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { type TrajectoryPoint, type ParameterProps } from "./types";
-
+import "./styles/mobile.css"
 
 export const useStorageState = (key: string, initialState: TrajectoryPoint) => {
   const [value, setValue] = useState<TrajectoryPoint>(() => {
@@ -42,149 +42,163 @@ export const ParameterControls = ({ parameterValues, onChangeParameterData, para
 
 
   return (
-    <form onSubmit={handleFormSubmit}>
-      <div>
-        <div>
-          <label>Longitude: </label>
-          <input
-            name="longitude"
-            type="range"
-            min="-180"
-            max="180"
-            step="0.1"
-            value={parameterValues.longitude}
-            onChange={handleParameterChange}
-          />
-          <input
-            name="longitude"
-            type="number"
-            min="-180"
-            max="180"
-            step="0.1"
-            value={parameterValues.longitude}
-            onChange={handleParameterChange}
-          />
-        </div>
-        <div>
-          <label>Latitude: </label>
-          <input
-            name="latitude"
-            type="range"
-            min="-90"
-            max="90"
-            step="0.1"
-            value={parameterValues.latitude}
-            onChange={handleParameterChange}
-          />
-          <input
-            name="latitude"
-            type="number"
-            min="-90"
-            max="90"
-            step="0.1"
-            value={parameterValues.latitude}
-            onChange={handleParameterChange}
-          />
-        </div>
-
-        <div>
-          <label>Altitude (meters): </label>
-          <input
-            name="altitude"
-            type="range"
-            min="0"
-            max="1000000"
-            step="1000"
-            value={parameterValues.altitude}
-            onChange={handleParameterChange}
-          />
-          <input
-            name="altitude"
-            type="number"
-            min="0"
-            max="1000000"
-            step="1000"
-            value={parameterValues.altitude}
-            onChange={handleParameterChange}
-          />
-        </div>
-        <div>
-          <div>
-            <label>Beta (Bearing angle - Clockwise horizontal angle from
-              north to direction of flight): </label>
+    <form onSubmit={handleFormSubmit} className="parameter-controls-mobile">
+      <div className="text-xs md:text-base space-y-2 md:space-y-4">
+        {/* Row 1: Longitude and Latitude */}
+        <div className="flex flex-row md:flex-col gap-2 md:gap-0">
+          <div className="w-1/2 md:w-full">
+            <label className="block mb-1">Longitude: </label>
+            <input
+              name="longitude"
+              type="range"
+              min="-180"
+              max="180"
+              step="0.1"
+              value={parameterValues.longitude}
+              onChange={handleParameterChange}
+              className="w-full mb-1"
+            />
+            <input
+              name="longitude"
+              type="number"
+              min="-180"
+              max="180"
+              step="0.1"
+              value={parameterValues.longitude}
+              onChange={handleParameterChange}
+              className="w-full"
+            />
           </div>
-          <input
-            name="beta"
-            type="range"
-            min="0"
-            max="360"
-            step="1"
-            value={parameterValues.beta}
-            onChange={handleParameterChange}
-          />
-          <input
-            name="beta"
-            type="number"
-            min="0"
-            max="360"
-            step="1"
-            value={parameterValues.beta}
-            onChange={handleParameterChange}
-          />
-        </div>
-        <div>
-          <div>
-            <label>Delta (Flight path angle - Angle between missile axis
-              and local horizontal. Angle is positive when
-              missile is climbing.)</label>
+          <div className="w-1/2 md:w-full">
+            <label className="block mb-1">Latitude: </label>
+            <input
+              name="latitude"
+              type="range"
+              min="-90"
+              max="90"
+              step="0.1"
+              value={parameterValues.latitude}
+              onChange={handleParameterChange}
+              className="w-full mb-1"
+            />
+            <input
+              name="latitude"
+              type="number"
+              min="-90"
+              max="90"
+              step="0.1"
+              value={parameterValues.latitude}
+              onChange={handleParameterChange}
+              className="w-full"
+            />
           </div>
-          <input
-            name="delta"
-            type="range"
-            min="-90"
-            max="90"
-            step="1"
-            value={parameterValues.delta}
-            onChange={handleParameterChange}
-          />
-          <input
-            name="delta"
-            type="number"
-            min="-90"
-            max="90"
-            step="1"
-            value={parameterValues.delta}
-            onChange={handleParameterChange}
-          />
         </div>
-        <div>
-          <div>
-            <label>Starting Velocity (km / second), min is 4 km/s (~ Mach 11.6), max is 8 km/s (~ Mach 23.3)</label>
+
+        {/* Row 2: Altitude and Beta */}
+        <div className="flex flex-row md:flex-col gap-2 md:gap-0">
+          <div className="w-1/2 md:w-full">
+            <label className="block mb-1">Altitude (meters): </label>
+            <input
+              name="altitude"
+              type="range"
+              min="0"
+              max="1000000"
+              step="1000"
+              value={parameterValues.altitude}
+              onChange={handleParameterChange}
+              className="w-full mb-1"
+            />
+            <input
+              name="altitude"
+              type="number"
+              min="0"
+              max="1000000"
+              step="1000"
+              value={parameterValues.altitude}
+              onChange={handleParameterChange}
+              className="w-full"
+            />
           </div>
-          <input
-            name="velocity"
-            type="range"
-            min="4"
-            max="8"
-            step="0.1"
-            value={parameterValues.velocity}
-            onChange={handleParameterChange}
-          />
-          <input
-            name="velocity"
-            type="number"
-            min="4"
-            max="8"
-            step="0.1"
-            value={parameterValues.velocity}
-            onChange={handleParameterChange}
-          />
+          <div className="w-1/2 md:w-full">
+            <label className="block mb-1 text-[0.65rem] md:text-base">Beta (Bearing angle): </label>
+            <input
+              name="beta"
+              type="range"
+              min="0"
+              max="360"
+              step="1"
+              value={parameterValues.beta}
+              onChange={handleParameterChange}
+              className="w-full mb-1"
+            />
+            <input
+              name="beta"
+              type="number"
+              min="0"
+              max="360"
+              step="1"
+              value={parameterValues.beta}
+              onChange={handleParameterChange}
+              className="w-full"
+            />
+          </div>
         </div>
 
-        <button type="submit">Start Simulation</button>
+        {/* Row 3: Delta and Velocity */}
+        <div className="flex flex-row md:flex-col gap-2 md:gap-0">
+          <div className="w-1/2 md:w-full">
+            <label className="block mb-1 text-[0.65rem] md:text-base">Delta (Flight path angle): </label>
+            <input
+              name="delta"
+              type="range"
+              min="-90"
+              max="90"
+              step="1"
+              value={parameterValues.delta}
+              onChange={handleParameterChange}
+              className="w-full mb-1"
+            />
+            <input
+              name="delta"
+              type="number"
+              min="-90"
+              max="90"
+              step="1"
+              value={parameterValues.delta}
+              onChange={handleParameterChange}
+              className="w-full"
+            />
+          </div>
+          <div className="w-1/2 md:w-full">
+            <label className="block mb-1 text-[0.65rem] md:text-base">Velocity (km/s): </label>
+            <input
+              name="velocity"
+              type="range"
+              min="4"
+              max="8"
+              step="0.1"
+              value={parameterValues.velocity}
+              onChange={handleParameterChange}
+              className="w-full mb-1"
+            />
+            <input
+              name="velocity"
+              type="number"
+              min="4"
+              max="8"
+              step="0.1"
+              value={parameterValues.velocity}
+              onChange={handleParameterChange}
+              className="w-full"
+            />
+          </div>
+        </div>
 
-        <button type="button" onClick={onReset}>Reset</button>
-
+        {/* Row 4: Buttons */}
+        <div className="flex flex-row gap-2 justify-center pt-2">
+          <button type="submit" className="px-3 py-1.5 text-[0.7rem] md:text-sm">Start Simulation</button>
+          <button type="button" onClick={onReset} className="px-3 py-1.5 text-[0.7rem] md:text-sm">Reset</button>
+        </div>
       </div>
     </form>
   );

@@ -8,6 +8,7 @@ import { useStorageState} from './ParameterControls';
 import { useTrajectoryHistory } from './TrajectoryHistory';
 import { type TrajectoryPoint } from './types'
 import "./styles/sidebar.css"
+import "./styles/mobile.css"
 
 function App() {
   const location = useLocation();
