@@ -21,4 +21,4 @@ ENV PORT=8080
 
 # 6. Start the server
 # Using ts-node for simplicity.
-CMD ["ts-node", "src/server.ts"]
+CMD ["ts-node-esm", "src/server.ts"]

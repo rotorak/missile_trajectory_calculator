@@ -2,7 +2,7 @@ import express, { type Request, type Response } from "express";
 import { initiateSimulation, getEventName, trajectoryEmitter, validateSimulation, spawnSimulation, validatePayload } from "./simulation-controller.js"
 import cors from "cors";
 const app = express();
-
+console.log("Server starting...");
 
 type TrajectoryData = {
   latitude: number,
