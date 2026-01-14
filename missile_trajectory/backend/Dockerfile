@@ -14,6 +14,11 @@ RUN npm ci --only=production=false
 # 4. Copy the rest of the backend code
 COPY . .
 
+# Add after COPY . .
+ARG BUILD_ID
+ENV BUILD_ID=$BUILD_ID
+RUN echo "Build ID: $BUILD_ID"
+
 # 5. Remove any existing dist folder and build TypeScript code
 RUN rm -rf dist/ && npm run build
 
