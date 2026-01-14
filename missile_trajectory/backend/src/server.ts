@@ -40,8 +40,8 @@ console.log('[PORT] All env vars with PORT:', Object.keys(process.env).filter(k 
 const cors_options = {
   origin: [
     process.env.FRONTEND_URL || "http://localhost:5173",
-    "https://missile-trajectory.vercel.app",  // Your Vercel domain
-    /\.vercel\.app$/,  // Allow all Vercel preview deployments
+    "https://missile-trajectory.vercel.app",  // Production domain
+    /\.vercel\.app$/,  // Allow ALL Vercel domains (preview deployments too)
   ],
   credentials: true,
 }
