@@ -48,6 +48,7 @@ function App() {
 
   const parameterSubmit = async () => {
     clearTrajectoryHistory();
+    setSimulationState('pending');
     try {
       if (eventSourceRef.current) {
         eventSourceRef.current.close();

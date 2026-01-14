@@ -30,12 +30,17 @@ const app = express();
 console.log("Server starting...");
 
 // Force port 8080 for Cloud Run
-const PORT = 8080;
-console.log('[PORT] Using port:', PORT);
+// ... existing imports and code ...
 
+// Use PORT from environment (Cloud Run sets this to 8080), otherwise default to 3000 for dev
+const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
+console.log('[PORT] Using port:', PORT);
 console.log('[PORT] process.env.PORT:', process.env.PORT);
+console.log('[PORT] NODE_ENV:', process.env.NODE_ENV);
 console.log('[PORT] Parsed PORT value:', PORT);
 console.log('[PORT] All env vars with PORT:', Object.keys(process.env).filter(k => k.includes('PORT')));
+
+// ... rest of the existing code ...
 
 const cors_options = {
   origin: [

@@ -26,18 +26,18 @@ export default defineConfig({
         },
       },
     },
-      fs: {
-        // Allow serving files from one level up to the project root
-        allow: ['..']
-      }
-    },
-    resolve: {
-      alias: {
-        // This alias helps with Cesium imports
-        cesium: 'cesium'
-      }
-    },
-    optimizeDeps: {
-      include: ['cesium']
+    fs: {
+      // Allow serving files from one level up to the project root
+      allow: ['..']
     }
-  })
+  },
+  resolve: {
+    alias: {
+      // This alias helps with Cesium imports
+      cesium: 'cesium'
+    }
+  },
+  optimizeDeps: {
+    include: ['cesium']
+  }
+})
