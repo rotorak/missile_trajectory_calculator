@@ -12,6 +12,8 @@ export default function Introduction() {
                 <p>
                     This project converts a 1962 FORTRAN II program for calculating ballistic missile trajectories (published for the IBM 1410 punch-card system) into a modern full-stack web application. The simulation engine has been modernized to Python 3.11 and runs within an Express.js backend using an event-driven architecture with Node.js EventEmitterfor decoupled communication.
                 </p>
+                <br />
+                The paper: <a className='underline text-blue-600 hover:text-blue-800 visited:text-purple-600' href="/missile_defense.pdf" target="_blank" rel="noopener noreferrer">Link</a>
                 <p>
                     Simulation data is streamed to the front-end in one-second intervals via Server-SentEvents (SSE) and displayed in a 3D global visualization using Cesium.js. The data flow is:
                     <p>
@@ -23,7 +25,7 @@ export default function Introduction() {
                     Each simulation generates a unique simulationId, and the backend uses EventEmitter with unique event names per simulation to ensure data isolation when multiple simulations run concurrently. SE was chosen over WebSockets due to deployment platform constraints.
                 </p>
                 <p>
-                    The logical flow for FORTRAN II would be unfamiliar to most users of modern C-syntax based languages, as the typical conditional expressions aren’t utilized; instead, conditionals reference specific GOTO line entries in order to facilitate execution which makes tracking the logic-flow of a program somewhat more difficult to follow.
+                    The logical flow for FORTRAN II would be unfamiliar to most users of modern C-syntax based languages, as the typical conditional expressions aren't utilized; instead, conditionals reference specific GOTO line entries in order to facilitate execution which makes tracking the logic-flow of a program somewhat more difficult to follow.
                 </p>
                 <img
                     src={fortranMap}

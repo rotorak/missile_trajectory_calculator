@@ -195,7 +195,7 @@ export const ParameterControls = ({ parameterValues, onChangeParameterData, para
         </div>
 
         {/* Row 4: Buttons */}
-        <div className="flex flex-row gap-2 justify-center pt-2">
+        <div className="flex flex-row gap-2 justify-center pt-2 pb-4 md:pb-0">
           <button type="submit" className="px-3 py-1.5 text-[0.7rem] md:text-sm">Start Simulation</button>
           <button type="button" onClick={onReset} className="px-3 py-1.5 text-[0.7rem] md:text-sm">Reset</button>
         </div>

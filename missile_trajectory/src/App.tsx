@@ -19,6 +19,7 @@ function App() {
   const [parameterData, setParameterData] = useStorageState('parameterData', { longitude: 0, latitude: 0, beta: 0, delta: 0, altitude: 73000, velocity: 5, time: 0 });
   const { trajectoryHistory, addTrajectoryData, clearTrajectoryHistory } = useTrajectoryHistory();
   const [simulationState, setSimulationState] = useState('pending');
+  const mainRef = useRef<HTMLElement | null>(null);
 
   const navItems = [
     { path: '/', label: 'Introduction', id: 'intro' },
@@ -28,7 +29,14 @@ function App() {
     { path: 'https://github.com/rotorak/missile_trajectory_calculator', label: 'Github', id: 'github' },
   ];
 
-  //  useEffect clean up on unmount
+
+
+  useEffect(() => {
+    if (mainRef.current) {
+      mainRef.current.scrollTop = 0;
+    }
+  }, [location.pathname]);
+
   useEffect(() => {
     return () => {
       if (eventSourceRef.current) {
@@ -152,7 +160,7 @@ function App() {
           </nav>
         </div>
       </aside>
-      <main className="flex-1 overflow-y-auto bg-black text-white">
+      <main ref={mainRef} className="flex-1 overflow-y-auto bg-black text-white">
         <Routes>
           <Route path="/" element={<Introduction />} />
           <Route path="/architecture" element={<Architecture />} />

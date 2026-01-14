@@ -34,7 +34,6 @@ export default function Simulation({
 }: SimulationProps) {
     return (
         <div className="w-full min-h-[600px] h-full flex flex-col md:flex-row">
-            {/* Mobile: Cesium at top (50% height), Desktop: Right side (65% width) */}
             <div className="w-full md:w-[65%] h-[50vh] md:h-full order-1 md:order-2">
                 <CesiumViewer
                     cesiumRef={cesiumRef}
@@ -50,7 +49,6 @@ export default function Simulation({
                     Interactive Simulation
                 </h1>
                 
-                {/* Mobile: Stacked vertically (InfoPanel then ParameterControls), Desktop: Stacked vertically */}
                 <div className="flex flex-col md:flex-col gap-2 md:gap-0 flex-1 min-h-0 overflow-hidden">
                     {/* InfoPanel - full width, centered, takes natural height */}
                     <div className="w-full flex-shrink-0 overflow-y-auto text-[0.7rem] md:text-base flex items-center justify-center">
@@ -58,7 +56,7 @@ export default function Simulation({
                     </div>
                     
                     {/* ParameterControls - full width, takes remaining space, scrollable */}
-                    <div className={`w-full flex-1 min-h-0 overflow-y-auto text-[0.7rem] md:text-base ${controlStyles}`}>
+                    <div className={`w-full flex-1 min-h-0 overflow-y-auto text-[0.7rem] md:text-base pb-20 md:pb-0 ${controlStyles}`}>
                         <ParameterControls
                             parameterValues={parameterData}
                             onChangeParameterData={setParameterData}
