@@ -67,7 +67,7 @@ function App() {
       const data = await initiationResponse.json();
       const simulationId = data.simulationId;
       simulationIdRef.current = simulationId;
-      const evtSource = new EventSource(`/api/trajectory-stream?simulationId=${simulationId}`);
+      const evtSource = new EventSource(`${API_URL}/api/trajectory-stream?simulationId=${simulationId}`);
       eventSourceRef.current = evtSource;
 
       evtSource.onopen = () => { console.log("Successful connection opened.") };
