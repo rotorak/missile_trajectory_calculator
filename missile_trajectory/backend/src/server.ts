@@ -1,5 +1,7 @@
 import express, { type Request, type Response } from "express";
 import { initiateSimulation, getEventName, trajectoryEmitter, validateSimulation, spawnSimulation, validatePayload } from "./simulation-controller.js"
+import { spawnSync } from "child_process";
+
 import cors from "cors";
 const app = express();
 console.log("Server starting...");
@@ -116,5 +118,13 @@ app.get('/api/trajectory-stream', async (req: Request, res: Response) => {
 app.listen(PORT, "0.0.0.0", () => {
   console.log(`Server is running on PORT ${PORT}`);
   console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
-  console.log(`Python3 available: ${require('child_process').spawnSync('python3', ['--version']).status === 0}`);
+  try {
+    const pythonCheck = spawnSync('python3', ['--version']);
+    console.log(`Python3 available: ${pythonCheck.status === 0}`);
+  } catch (error) {
+    console.error("Error checking Python3:", error);
+  }
+}).on('error', (error: Error) => {
+  console.error('Failed to start server:', error);
+  process.exit(1);
 });
