@@ -42,8 +42,8 @@ RUN ls -la dist/ || (echo "Build failed: dist directory not found" && exit 1)
 RUN test -f dist/server.js || (echo "Build failed: dist/server.js not found" && exit 1)
 RUN test -f dist/simulation-controller.js || (echo "Build failed: dist/simulation-controller.js not found" && exit 1)
 
-# 9. Final verification - This will fail the build if PORT is not 8080
-RUN grep -q "const PORT = 8080" dist/server.js || (echo "ERROR: Compiled code does not have PORT = 8080!" && echo "Actual PORT value found:" && grep "const PORT" dist/server.js && exit 1)
+# 9. Final verification - Verify PORT uses environment variable (Cloud Run sets PORT=8080)
+RUN grep -q "process.env.PORT" dist/server.js || (echo "ERROR: Compiled code does not use process.env.PORT!" && echo "Actual PORT value found:" && grep "const PORT" dist/server.js && exit 1)
 
 # 10. Verify missile.py exists
 RUN test -f missile.py || (echo "missile.py not found" && exit 1)
