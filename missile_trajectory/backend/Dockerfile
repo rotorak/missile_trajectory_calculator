@@ -9,16 +9,22 @@ WORKDIR /app
 
 # 3. Copy package files and install Node dependencies
 COPY package*.json ./
-RUN npm install
-RUN npm install -g typescript ts-node
+RUN npm ci --only=production=false
 
 # 4. Copy the rest of the backend code
 COPY . .
 
-# 5. Cloud Run injects the PORT environment variable, usually 8080.
+# 5. Build TypeScript code
+RUN npm run build
+
+# 6. Cloud Run injects the PORT environment variable, usually 8080.
 # Your server.ts already handles process.env.PORT, which is perfect.
 ENV PORT=8080
+ENV NODE_ENV=production
 
-# 6. Start the server
-# Using ts-node for simplicity.
-CMD ["ts-node-esm", "src/server.ts"]
+# 7. Expose the port (informational, Cloud Run uses PORT env var)
+EXPOSE 8080
+
+# 8. Start the server using the compiled JavaScript
+# This is more reliable than ts-node in production
+CMD ["node", "dist/server.js"]
