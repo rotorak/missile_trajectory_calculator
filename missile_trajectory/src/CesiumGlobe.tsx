@@ -18,6 +18,14 @@ const globe_options = {
   navigationInstructionsInitiallyVisible: false,
 }
 
+const cesiumToken = import.meta.env.VITE_CESIUM_ION_TOKEN;
+
+if (cesiumToken) {
+  Cesium.Ion.defaultAccessToken = cesiumToken;
+} else {
+  console.warn("Cesium Ion Token is missing.");
+}
+
 // first useEffect generates refs for later rendering and establishes Cesium viewer frame
 const CesiumViewer = ({ cesiumRef, startingValues, trajectoryHistory, simulationState }: CesiumViewerInterface) => {
 
